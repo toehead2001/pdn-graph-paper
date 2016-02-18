@@ -1,0 +1,73 @@
+[EN-US]
+
+GraphPaperEffectPlugin=Graph Paper
+GraphPaperEffectPlugin.Description=Generates a graph with adjustable Cell Size, Group Size, and Cluster Size.
+GraphPaperEffectPlugin.SubmenuName=SubmenuNames.Render
+GraphPaperEffectPlugin.Keywords=isometric, graph
+GraphPaperEffectPlugin.Configuration=%GraphPaper%;
+GraphPaperEffectPlugin.Help=http://forums.getpaint.net/index.php?showtopic=106915
+
+
+GraphType.DisplayName=Graph Type
+GraphType.Description= 
+GraphTypeEnum.Standard=Standard
+GraphTypeEnum.Isometric=Isometric
+
+CellSize.DisplayName=Cell Size
+GroupSize.DisplayName=Cells per Group
+ClusterSize.DisplayName=Groups per Cluster
+ClusterSize.Description= 
+
+LineStylesBox.DisplayName=Lines Styles
+LineStylesBox.Description= 
+CellLineStyle.Label=Cell:
+CellLineStyleEnum.Solid=Solid
+CellLineStyleEnum.Dashed=Dashed
+CellLineStyleEnum.Dotted=Dotted
+GroupLineStyle.Label=Group:
+GroupLineStyleEnum.Solid=Solid
+GroupLineStyleEnum.Dashed=Dashed
+GroupLineStyleEnum.Dotted=Dotted
+ClusterLineStyle.Label=Cluster:
+ClusterLineStyleEnum.Solid=Solid
+ClusterLineStyleEnum.Dashed=Dashed
+ClusterLineStyleEnum.Dotted=Dotted
+
+
+ColorTabs.DisplayName=Colors
+CellColorTab.DisplayName=Cell
+GroupColorTab.DisplayName=Group
+ClusterColorTab.DisplayName=Cluster
+IsoVerColorTab.DisplayName=Isometric
+BgColorTab.DisplayName=Background
+
+
+CellColor.DisplayName=Cell Line Color
+CellColorEnum.PrimaryColor=Primary Color
+CellColorEnum.Custom=Custom:
+CellColorWheel.DisplayName=
+
+GroupColor.DisplayName=Group Line Color
+GroupColorEnum.CellColor=Cell Color
+GroupColorEnum.PrimaryColor=Primary Color
+GroupColorEnum.Custom=Custom:
+GroupColorWheel.DisplayName=
+
+ClusterColor.DisplayName=Cluster Line Color
+ClusterColorEnum.CellColor=Cell Color
+ClusterColorEnum.PrimaryColor=Primary Color
+ClusterColorEnum.Custom=Custom:
+ClusterColorWheel.DisplayName=
+
+IsoVerColor.DisplayName=Isometric Vertical Line Color
+IsoVerColorEnum.CellColor=Cell Color
+IsoVerColorEnum.PrimaryColor=Primary Color
+IsoVerColorEnum.Custom=Custom:
+IsoVerColorWheel.DisplayName=
+
+
+BgColor.DisplayName=Background Color
+BgColorEnum.None=None
+BgColorEnum.SecondaryColor=Secondary Color
+BgColorEnum.Custom=Custom:
+BgColorWheel.DisplayName=
