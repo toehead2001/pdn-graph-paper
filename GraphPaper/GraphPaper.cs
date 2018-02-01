@@ -486,7 +486,7 @@ namespace GraphPaperEffect
                         }
 
                         // Draw Horizontal Lines
-                        for (int i = 0; i < yLoops; i++)
+                        for (int i = 0; i < xLoops; i++)
                         {
                             if ((set == 2) && (i % (Amount2 * Amount3) != 0))
                                 continue;
