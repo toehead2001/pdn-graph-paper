@@ -123,21 +123,21 @@ namespace GraphPaperEffect
 
         protected override OptionControlList OnSetupOptions(OptionContext optContext)
         {
-            OptionInt32Slider cellSize = new OptionInt32Slider(OptionNames.CellSize, optContext, 10, 10, 100);
-            cellSize.NumericUnit = new NumericUnit("px\u00B2");
-            OptionInt32Slider groupSize = new OptionInt32Slider(OptionNames.GroupSize, optContext, 5, 1, 10);
-            groupSize.NumericUnit = new NumericUnit("\u00B2");
-            OptionInt32Slider clusterSize = new OptionInt32Slider(OptionNames.ClusterSize, optContext, 2, 1, 10);
-            clusterSize.NumericUnit = new NumericUnit("\u00B2");
-            Color mixedColor = Color.FromArgb((EnvironmentParameters.PrimaryColor.A + EnvironmentParameters.SecondaryColor.A) / 2, (EnvironmentParameters.PrimaryColor.R + EnvironmentParameters.SecondaryColor.R) / 2,
-                (EnvironmentParameters.PrimaryColor.G + EnvironmentParameters.SecondaryColor.G) / 2, (EnvironmentParameters.PrimaryColor.B + EnvironmentParameters.SecondaryColor.B) / 2);
-
-            OptionControlList options = new OptionControlList
+            return new OptionControlList
             {
                 new OptionEnumRadioButtons<GraphTypeEnum>(OptionNames.GraphType, optContext, GraphTypeEnum.Standard),
-                cellSize,
-                groupSize,
-                clusterSize,
+                new OptionInt32Slider(OptionNames.CellSize, optContext, 10, 10, 100)
+                {
+                    NumericUnit = new NumericUnit("px\u00B2")
+                },
+                new OptionInt32Slider(OptionNames.GroupSize, optContext, 5, 1, 10)
+                {
+                    NumericUnit = new NumericUnit("\u00B2")
+                },
+                new OptionInt32Slider(OptionNames.ClusterSize, optContext, 2, 1, 10)
+                {
+                    NumericUnit = new NumericUnit("\u00B2")
+                },
                 new OptionPanelBox(OptionNames.LineStylesBox, optContext)
                 {
                     new OptionEnumRadioButtons<CellLineStyleEnum>(OptionNames.CellLineStyle, optContext, CellLineStyleEnum.Dotted)
@@ -185,7 +185,9 @@ namespace GraphPaperEffect
                         {
                             Packed = true
                         },
-                        new OptionColorWheel(OptionNames.IsoVerColorWheel, optContext, mixedColor, ColorWheelEnum.AddAlpha | ColorWheelEnum.AddPalette)
+                        new OptionColorWheel(OptionNames.IsoVerColorWheel, optContext,
+                                             ColorBgra.Blend(new ColorBgra[] { EnvironmentParameters.PrimaryColor, EnvironmentParameters.SecondaryColor }).ToColor(),
+                                             ColorWheelEnum.AddAlpha | ColorWheelEnum.AddPalette)
                     },
                     new OptionPanelPage(OptionNames.BgColorTab, optContext)
                     {
@@ -197,7 +199,6 @@ namespace GraphPaperEffect
                     }
                 }
             };
-            return options;
         }
 
         #region UI Rules
