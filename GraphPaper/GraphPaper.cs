@@ -281,70 +281,64 @@ namespace GraphPaperEffect
         protected override void OnSetRenderInfo(OptionBasedEffectConfigToken newToken, RenderArgs dstArgs, RenderArgs srcArgs)
         {
             #region Token Stuff
-            byte cellColorRadio = (byte)OptionEnumRadioButtons<CellColorEnum>.GetOptionValue(OptionNames.CellColor, newToken.Items);
-            byte groupColorRadio = (byte)OptionEnumRadioButtons<GroupColorEnum>.GetOptionValue(OptionNames.GroupColor, newToken.Items);
-            byte clusterColorRadio = (byte)OptionEnumRadioButtons<ClusterColorEnum>.GetOptionValue(OptionNames.ClusterColor, newToken.Items);
-            byte isoVerColorRadio = (byte)OptionEnumRadioButtons<IsoVerColorEnum>.GetOptionValue(OptionNames.IsoVerColor, newToken.Items);
-            byte bgColorRadio = (byte)OptionEnumRadioButtons<BgColorEnum>.GetOptionValue(OptionNames.BgColor, newToken.Items);
-
             Amount1 = OptionTypeSlider<int>.GetOptionValue(OptionNames.CellSize, newToken.Items);
             Amount2 = OptionTypeSlider<int>.GetOptionValue(OptionNames.GroupSize, newToken.Items);
             Amount3 = OptionTypeSlider<int>.GetOptionValue(OptionNames.ClusterSize, newToken.Items);
-            Amount4 = (byte)OptionEnumRadioButtons<GraphTypeEnum>.GetOptionValue(OptionNames.GraphType, newToken.Items);
-            switch (cellColorRadio)
+            Amount4 = OptionEnumRadioButtons<GraphTypeEnum>.GetOptionValue(OptionNames.GraphType, newToken.Items);
+            switch (OptionEnumRadioButtons<CellColorEnum>.GetOptionValue(OptionNames.CellColor, newToken.Items))
             {
-                case 0: // Primary Color
+                case CellColorEnum.PrimaryColor:
                     Amount5 = EnvironmentParameters.PrimaryColor;
                     break;
-                case 1: // Custom
+                case CellColorEnum.Custom:
                     Amount5 = OptionColorWheel.GetOptionValue(OptionNames.CellColorWheel, newToken.Items);
                     break;
             }
-            switch (groupColorRadio)
+            switch (OptionEnumRadioButtons<GroupColorEnum>.GetOptionValue(OptionNames.GroupColor, newToken.Items))
             {
-                case 0: // Cell Color
+                case GroupColorEnum.CellColor:
                     Amount6 = Amount5;
                     break;
-                case 1: // Primary Color
+                case GroupColorEnum.PrimaryColor:
                     Amount6 = EnvironmentParameters.PrimaryColor;
                     break;
-                case 2: // Custom
+                case GroupColorEnum.Custom:
                     Amount6 = OptionColorWheel.GetOptionValue(OptionNames.GroupColorWheel, newToken.Items);
                     break;
             }
-            switch (clusterColorRadio)
+            switch (OptionEnumRadioButtons<ClusterColorEnum>.GetOptionValue(OptionNames.ClusterColor, newToken.Items))
             {
-                case 0: // Cell Color
+                case ClusterColorEnum.CellColor:
                     Amount7 = Amount5;
                     break;
-                case 1: // Primary Color
+                case ClusterColorEnum.PrimaryColor:
                     Amount7 = EnvironmentParameters.PrimaryColor;
                     break;
-                case 2: // Custom
+                case ClusterColorEnum.Custom:
                     Amount7 = OptionColorWheel.GetOptionValue(OptionNames.ClusterColorWheel, newToken.Items);
                     break;
             }
-            switch (isoVerColorRadio)
+            switch (OptionEnumRadioButtons<IsoVerColorEnum>.GetOptionValue(OptionNames.IsoVerColor, newToken.Items))
             {
-                case 0: // Cell Color
+                case IsoVerColorEnum.CellColor:
                     Amount8 = Amount5;
                     break;
-                case 1: // Primary Color
+                case IsoVerColorEnum.PrimaryColor:
                     Amount8 = EnvironmentParameters.PrimaryColor;
                     break;
-                case 2: // Custom
+                case IsoVerColorEnum.Custom:
                     Amount8 = OptionColorWheel.GetOptionValue(OptionNames.IsoVerColorWheel, newToken.Items);
                     break;
             }
-            switch (bgColorRadio)
+            switch (OptionEnumRadioButtons<BgColorEnum>.GetOptionValue(OptionNames.BgColor, newToken.Items))
             {
-                case 0: // None
+                case BgColorEnum.None:
                     Amount9 = Color.Transparent;
                     break;
-                case 1: // Secondary Color
+                case BgColorEnum.SecondaryColor:
                     Amount9 = EnvironmentParameters.SecondaryColor;
                     break;
-                case 2: // Custom
+                case BgColorEnum.Custom:
                     Amount9 = OptionColorWheel.GetOptionValue(OptionNames.BgColorWheel, newToken.Items);
                     break;
             }
@@ -374,7 +368,7 @@ namespace GraphPaperEffect
             // Draw Graph
             switch (Amount4)
             {
-                case 0: // Standard
+                case GraphTypeEnum.Standard:
                     #region
                     // Calculate the number of lines will fit in the selection
                     xLoops = (int)Math.Ceiling((double)selection.Height / Amount1 / 2);
@@ -463,7 +457,7 @@ namespace GraphPaperEffect
                     #endregion
 
                     break;
-                case 1: // Isometric
+                case GraphTypeEnum.Isometric:
                     #region
                     double rad30 = Math.PI / 180 * 30;
                     double rad60 = Math.PI / 180 * 60;
@@ -605,7 +599,7 @@ namespace GraphPaperEffect
         int Amount1; // [2,100] Cell Size
         int Amount2; // [1,10] Cells per Group (squared)
         int Amount3; // [1,10] Groups per Cluster (squared)
-        byte Amount4; // [1] Graph Type|Standard|Isometric
+        GraphTypeEnum Amount4; // [1] Graph Type|Standard|Isometric
         ColorBgra Amount5; // Cell Color
         ColorBgra Amount6; // Group Color
         ColorBgra Amount7; // Cluster Color
