@@ -342,9 +342,9 @@ namespace GraphPaperEffect
                     Amount9 = OptionColorWheel.GetOptionValue(OptionNames.BgColorWheel, newToken.Items);
                     break;
             }
-            Amount10 = (byte)OptionEnumDropDown<CellLineStyleEnum>.GetOptionValue(OptionNames.CellLineStyle, newToken.Items);
-            Amount11 = (byte)OptionEnumDropDown<GroupLineStyleEnum>.GetOptionValue(OptionNames.GroupLineStyle, newToken.Items);
-            Amount12 = (byte)OptionEnumDropDown<ClusterLineStyleEnum>.GetOptionValue(OptionNames.ClusterLineStyle, newToken.Items);
+            Amount10 = (byte)OptionEnumRadioButtons<CellLineStyleEnum>.GetOptionValue(OptionNames.CellLineStyle, newToken.Items);
+            Amount11 = (byte)OptionEnumRadioButtons<GroupLineStyleEnum>.GetOptionValue(OptionNames.GroupLineStyle, newToken.Items);
+            Amount12 = (byte)OptionEnumRadioButtons<ClusterLineStyleEnum>.GetOptionValue(OptionNames.ClusterLineStyle, newToken.Items);
             #endregion
 
 
