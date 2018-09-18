@@ -64,21 +64,7 @@ namespace GraphPaperEffect
             Isometric
         }
 
-        enum CellLineStyleEnum
-        {
-            Solid,
-            Dashed,
-            Dotted
-        }
-
-        enum GroupLineStyleEnum
-        {
-            Solid,
-            Dashed,
-            Dotted
-        }
-
-        enum ClusterLineStyleEnum
+        enum LineStyleEnum
         {
             Solid,
             Dashed,
@@ -140,15 +126,15 @@ namespace GraphPaperEffect
                 },
                 new OptionPanelBox(OptionNames.LineStylesBox, optContext)
                 {
-                    new OptionEnumRadioButtons<CellLineStyleEnum>(OptionNames.CellLineStyle, optContext, CellLineStyleEnum.Dotted)
+                    new OptionEnumRadioButtons<LineStyleEnum>(OptionNames.CellLineStyle, optContext, LineStyleEnum.Dotted)
                     {
                         Packed = true
                     },
-                    new OptionEnumRadioButtons<GroupLineStyleEnum>(OptionNames.GroupLineStyle, optContext, GroupLineStyleEnum.Dashed)
+                    new OptionEnumRadioButtons<LineStyleEnum>(OptionNames.GroupLineStyle, optContext, LineStyleEnum.Dashed)
                     {
                         Packed = true
                     },
-                    new OptionEnumRadioButtons<ClusterLineStyleEnum>(OptionNames.ClusterLineStyle, optContext, ClusterLineStyleEnum.Solid)
+                    new OptionEnumRadioButtons<LineStyleEnum>(OptionNames.ClusterLineStyle, optContext, LineStyleEnum.Solid)
                     {
                         Packed = true
                     }
@@ -321,9 +307,9 @@ namespace GraphPaperEffect
                     Amount9 = OptionColorWheel.GetOptionValue(OptionNames.BgColorWheel, newToken.Items);
                     break;
             }
-            Amount10 = (byte)OptionEnumRadioButtons<CellLineStyleEnum>.GetOptionValue(OptionNames.CellLineStyle, newToken.Items);
-            Amount11 = (byte)OptionEnumRadioButtons<GroupLineStyleEnum>.GetOptionValue(OptionNames.GroupLineStyle, newToken.Items);
-            Amount12 = (byte)OptionEnumRadioButtons<ClusterLineStyleEnum>.GetOptionValue(OptionNames.ClusterLineStyle, newToken.Items);
+            Amount10 = OptionEnumRadioButtons<LineStyleEnum>.GetOptionValue(OptionNames.CellLineStyle, newToken.Items);
+            Amount11 = OptionEnumRadioButtons<LineStyleEnum>.GetOptionValue(OptionNames.GroupLineStyle, newToken.Items);
+            Amount12 = OptionEnumRadioButtons<LineStyleEnum>.GetOptionValue(OptionNames.ClusterLineStyle, newToken.Items);
             #endregion
 
 
@@ -544,25 +530,19 @@ namespace GraphPaperEffect
         }
 
         // Fetch Dash Styles
-        DashStyle getDashStyle(int set)
+        DashStyle getDashStyle(LineStyleEnum style)
         {
-            DashStyle dashStyleOfSet;
-            switch (set)
+            switch (style)
             {
-                case 0: // Solid
-                    dashStyleOfSet = DashStyle.Solid;
-                    break;
-                case 1: // Dashed
-                    dashStyleOfSet = DashStyle.Dash;
-                    break;
-                case 2: // Dotted
-                    dashStyleOfSet = DashStyle.Dot;
-                    break;
+                case LineStyleEnum.Solid:
+                    return DashStyle.Solid;
+                case LineStyleEnum.Dashed:
+                    return DashStyle.Dash;
+                case LineStyleEnum.Dotted:
+                    return DashStyle.Dot;
                 default:
-                    dashStyleOfSet = DashStyle.Solid;
-                    break;
+                    return DashStyle.Solid;
             }
-            return dashStyleOfSet;
         }
 
         protected override void OnRender(Rectangle[] renderRects, int startIndex, int length)
@@ -584,9 +564,9 @@ namespace GraphPaperEffect
         ColorBgra Amount7; // Cluster Color
         ColorBgra Amount8; // IsoVer Color
         ColorBgra Amount9; // Background Color
-        byte Amount10; // Cell Dash Style
-        byte Amount11; // Group Dash Style
-        byte Amount12; // Cluster Dash Style
+        LineStyleEnum Amount10; // Cell Dash Style
+        LineStyleEnum Amount11; // Group Dash Style
+        LineStyleEnum Amount12; // Cluster Dash Style
         #endregion
 
         Surface graphSurface;
