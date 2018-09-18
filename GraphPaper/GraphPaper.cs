@@ -24,6 +24,21 @@ namespace GraphPaperEffect
     {
         private static readonly Image StaticIcon = new Bitmap(typeof(GraphPaperEffectPlugin), "GraphPaper.png");
 
+        private int cellSize; // [2,100] Cell Size
+        private int cellsPerGroup; // [1,10] Cells per Group (squared)
+        private int cellsPerCluster; // [1,10] Groups per Cluster (squared)
+        private GraphType graphType; // [1] Graph Type|Standard|Isometric
+        private ColorBgra cellColor; // Cell Color
+        private ColorBgra groupColor; // Group Color
+        private ColorBgra clusterColor; // Cluster Color
+        private ColorBgra isoVerColor; // IsoVer Color
+        private ColorBgra backColor; // Background Color
+        private LineStyle cellLineStyle; // Cell Dash Style
+        private LineStyle groupLineStyle; // Group Dash Style
+        private LineStyle clusterLineStyle; // Cluster Dash Style
+
+        private Surface graphSurface;
+
         public GraphPaperEffectPlugin()
             : base(typeof(GraphPaperEffectPlugin), StaticIcon, EffectFlags.Configurable)
         {
@@ -105,7 +120,6 @@ namespace GraphPaperEffect
             Custom
         }
         #endregion
-
 
         protected override OptionControlList OnSetupOptions(OptionContext optContext)
         {
@@ -529,7 +543,6 @@ namespace GraphPaperEffect
             base.OnSetRenderInfo(newToken, dstArgs, srcArgs);
         }
 
-        // Fetch Dash Styles
         private DashStyle GetDashStyle(LineStyle style)
         {
             switch (style)
@@ -553,23 +566,6 @@ namespace GraphPaperEffect
                 Render(DstArgs.Surface, SrcArgs.Surface, renderRects[i]);
             }
         }
-
-        #region CodeLab
-        private int cellSize; // [2,100] Cell Size
-        private int cellsPerGroup; // [1,10] Cells per Group (squared)
-        private int cellsPerCluster; // [1,10] Groups per Cluster (squared)
-        private GraphType graphType; // [1] Graph Type|Standard|Isometric
-        private ColorBgra cellColor; // Cell Color
-        private ColorBgra groupColor; // Group Color
-        private ColorBgra clusterColor; // Cluster Color
-        private ColorBgra isoVerColor; // IsoVer Color
-        private ColorBgra backColor; // Background Color
-        private LineStyle cellLineStyle; // Cell Dash Style
-        private LineStyle groupLineStyle; // Group Dash Style
-        private LineStyle clusterLineStyle; // Cluster Dash Style
-        #endregion
-
-        private Surface graphSurface;
 
         private void Render(Surface dst, Surface src, Rectangle rect)
         {
