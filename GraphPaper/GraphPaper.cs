@@ -424,8 +424,8 @@ namespace GraphPaperEffect
                     break;
                 case GraphTypeEnum.Isometric:
                     #region
-                    double rad30 = Math.PI / 180 * 30;
-                    double rad60 = Math.PI / 180 * 60;
+                    const double rad30 = Math.PI / 180 * 30;
+                    const double rad60 = Math.PI / 180 * 60;
                     float sineHelper = (float)(Math.Sin(rad60) / Math.Sin(rad30));
 
                     // Calculate the number of lines will fit in the selection
