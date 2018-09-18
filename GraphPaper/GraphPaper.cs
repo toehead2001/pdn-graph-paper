@@ -206,13 +206,16 @@ namespace GraphPaperEffect
         {
             Option(OptionNames.ColorTabs).SuppressTokenUpdate = true;
 
-            Option(OptionNames.CellColor).ValueChanged += new OptionValueEventHandler(CellColorRadio_ValueChanged);
-            Option(OptionNames.GroupColor).ValueChanged += new OptionValueEventHandler(GroupColorRadio_ValueChanged);
-            Option(OptionNames.ClusterColor).ValueChanged += new OptionValueEventHandler(ClusterColorRadio_ValueChanged);
-            Option(OptionNames.IsoVerColor).ValueChanged += new OptionValueEventHandler(IsoVerColorRadio_ValueChanged);
-            Option(OptionNames.BgColor).ValueChanged += new OptionValueEventHandler(BgColorRadio_ValueChanged);
-
-            Option(OptionNames.GraphType).ValueChanged += new OptionValueEventHandler(GraphTypeRadio_ValueChanged);
+            Option(OptionNames.CellColor).ValueChanged += (sender, e) => CellColorWheel_Rule();
+            Option(OptionNames.GroupColor).ValueChanged += (sender, e) => GroupColorWheel_Rule();
+            Option(OptionNames.ClusterColor).ValueChanged += (sender, e) => ClusterColorWheel_Rule();
+            Option(OptionNames.IsoVerColor).ValueChanged += (sender, e) => IsoVerColorWheel_Rule();
+            Option(OptionNames.BgColor).ValueChanged += (sender, e) => BgColorWheel_Rule();
+            Option(OptionNames.GraphType).ValueChanged += (sender, e) =>
+            {
+                IsoVerColorWheel_Rule();
+                IsoVerColor_Rule();
+            };
 
             CellColorWheel_Rule();
             GroupColorWheel_Rule();
@@ -222,56 +225,31 @@ namespace GraphPaperEffect
             IsoVerColor_Rule();
         }
 
-        private void CellColorRadio_ValueChanged(object sender, EventArgs e)
-        {
-            CellColorWheel_Rule();
-        }
         private void CellColorWheel_Rule()
         {
             Option(OptionNames.CellColorWheel).ReadOnly = ((OptionEnumRadioButtons<CellColorEnum>)Option(OptionNames.CellColor)).Value != CellColorEnum.Custom;
         }
 
-        private void GroupColorRadio_ValueChanged(object sender, EventArgs e)
-        {
-            GroupColorWheel_Rule();
-        }
         private void GroupColorWheel_Rule()
         {
             Option(OptionNames.GroupColorWheel).ReadOnly = ((OptionEnumRadioButtons<GroupColorEnum>)Option(OptionNames.GroupColor)).Value != GroupColorEnum.Custom;
         }
 
-        private void ClusterColorRadio_ValueChanged(object sender, EventArgs e)
-        {
-            ClusterColorWheel_Rule();
-        }
         private void ClusterColorWheel_Rule()
         {
             Option(OptionNames.ClusterColorWheel).ReadOnly = ((OptionEnumRadioButtons<ClusterColorEnum>)Option(OptionNames.ClusterColor)).Value != ClusterColorEnum.Custom;
         }
 
-        private void IsoVerColorRadio_ValueChanged(object sender, EventArgs e)
-        {
-            IsoVerColorWheel_Rule();
-        }
         private void IsoVerColorWheel_Rule()
         {
             Option(OptionNames.IsoVerColorWheel).ReadOnly = ((((OptionEnumRadioButtons<IsoVerColorEnum>)Option(OptionNames.IsoVerColor)).Value != IsoVerColorEnum.Custom) || (((OptionEnumRadioButtons<GraphTypeEnum>)Option(OptionNames.GraphType)).Value != GraphTypeEnum.Isometric));
         }
 
-        private void BgColorRadio_ValueChanged(object sender, EventArgs e)
-        {
-            BgColorWheel_Rule();
-        }
         private void BgColorWheel_Rule()
         {
             Option(OptionNames.BgColorWheel).ReadOnly = ((OptionEnumRadioButtons<BgColorEnum>)Option(OptionNames.BgColor)).Value != BgColorEnum.Custom;
         }
 
-        private void GraphTypeRadio_ValueChanged(object sender, EventArgs e)
-        {
-            IsoVerColorWheel_Rule();
-            IsoVerColor_Rule();
-        }
         private void IsoVerColor_Rule()
         {
             Option(OptionNames.IsoVerColor).ReadOnly = ((OptionEnumRadioButtons<GraphTypeEnum>)Option(OptionNames.GraphType)).Value != GraphTypeEnum.Isometric;
