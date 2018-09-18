@@ -366,9 +366,9 @@ namespace GraphPaperEffect
                         {
                             if ((set == 2) && (i % (Amount2 * Amount3) != 0))
                                 continue;
-                            else if ((set == 1) && ((i % Amount2 != 0) || (i % (Amount2 * Amount3) == 0)))
+                            if ((set == 1) && ((i % Amount2 != 0) || (i % (Amount2 * Amount3) == 0)))
                                 continue;
-                            else if ((set == 0) && (i % Amount2 == 0))
+                            if ((set == 0) && (i % Amount2 == 0))
                                 continue;
 
                             if (i == 0)
@@ -395,9 +395,9 @@ namespace GraphPaperEffect
                         {
                             if ((set == 2) && (i % (Amount2 * Amount3) != 0))
                                 continue;
-                            else if ((set == 1) && ((i % Amount2 != 0) || (i % (Amount2 * Amount3) == 0)))
+                            if ((set == 1) && ((i % Amount2 != 0) || (i % (Amount2 * Amount3) == 0)))
                                 continue;
-                            else if ((set == 0) && (i % Amount2 == 0))
+                            if ((set == 0) && (i % Amount2 == 0))
                                 continue;
 
                             if (i == 0)
@@ -500,9 +500,9 @@ namespace GraphPaperEffect
                         {
                             if ((set == 2) && (i % (Amount2 * Amount3) != 0))
                                 continue;
-                            else if ((set == 1) && ((i % Amount2 != 0) || (i % (Amount2 * Amount3) == 0)))
+                            if ((set == 1) && ((i % Amount2 != 0) || (i % (Amount2 * Amount3) == 0)))
                                 continue;
-                            else if ((set == 0) && (i % Amount2 == 0))
+                            if ((set == 0) && (i % Amount2 == 0))
                                 continue;
 
                             start = new PointF(0, Amount1 * i);
