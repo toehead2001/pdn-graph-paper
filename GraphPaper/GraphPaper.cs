@@ -223,36 +223,37 @@ namespace GraphPaperEffect
             IsoVerColorWheel_Rule();
             BgColorWheel_Rule();
             IsoVerColor_Rule();
-        }
 
-        private void CellColorWheel_Rule()
-        {
-            Option(OptionNames.CellColorWheel).ReadOnly = ((OptionEnumRadioButtons<CellColorEnum>)Option(OptionNames.CellColor)).Value != CellColorEnum.Custom;
-        }
 
-        private void GroupColorWheel_Rule()
-        {
-            Option(OptionNames.GroupColorWheel).ReadOnly = ((OptionEnumRadioButtons<GroupColorEnum>)Option(OptionNames.GroupColor)).Value != GroupColorEnum.Custom;
-        }
+            void CellColorWheel_Rule()
+            {
+                Option(OptionNames.CellColorWheel).ReadOnly = ((OptionEnumRadioButtons<CellColorEnum>)Option(OptionNames.CellColor)).Value != CellColorEnum.Custom;
+            }
 
-        private void ClusterColorWheel_Rule()
-        {
-            Option(OptionNames.ClusterColorWheel).ReadOnly = ((OptionEnumRadioButtons<ClusterColorEnum>)Option(OptionNames.ClusterColor)).Value != ClusterColorEnum.Custom;
-        }
+            void GroupColorWheel_Rule()
+            {
+                Option(OptionNames.GroupColorWheel).ReadOnly = ((OptionEnumRadioButtons<GroupColorEnum>)Option(OptionNames.GroupColor)).Value != GroupColorEnum.Custom;
+            }
 
-        private void IsoVerColorWheel_Rule()
-        {
-            Option(OptionNames.IsoVerColorWheel).ReadOnly = ((((OptionEnumRadioButtons<IsoVerColorEnum>)Option(OptionNames.IsoVerColor)).Value != IsoVerColorEnum.Custom) || (((OptionEnumRadioButtons<GraphTypeEnum>)Option(OptionNames.GraphType)).Value != GraphTypeEnum.Isometric));
-        }
+            void ClusterColorWheel_Rule()
+            {
+                Option(OptionNames.ClusterColorWheel).ReadOnly = ((OptionEnumRadioButtons<ClusterColorEnum>)Option(OptionNames.ClusterColor)).Value != ClusterColorEnum.Custom;
+            }
 
-        private void BgColorWheel_Rule()
-        {
-            Option(OptionNames.BgColorWheel).ReadOnly = ((OptionEnumRadioButtons<BgColorEnum>)Option(OptionNames.BgColor)).Value != BgColorEnum.Custom;
-        }
+            void IsoVerColorWheel_Rule()
+            {
+                Option(OptionNames.IsoVerColorWheel).ReadOnly = ((((OptionEnumRadioButtons<IsoVerColorEnum>)Option(OptionNames.IsoVerColor)).Value != IsoVerColorEnum.Custom) || (((OptionEnumRadioButtons<GraphTypeEnum>)Option(OptionNames.GraphType)).Value != GraphTypeEnum.Isometric));
+            }
 
-        private void IsoVerColor_Rule()
-        {
-            Option(OptionNames.IsoVerColor).ReadOnly = ((OptionEnumRadioButtons<GraphTypeEnum>)Option(OptionNames.GraphType)).Value != GraphTypeEnum.Isometric;
+            void BgColorWheel_Rule()
+            {
+                Option(OptionNames.BgColorWheel).ReadOnly = ((OptionEnumRadioButtons<BgColorEnum>)Option(OptionNames.BgColor)).Value != BgColorEnum.Custom;
+            }
+
+            void IsoVerColor_Rule()
+            {
+                Option(OptionNames.IsoVerColor).ReadOnly = ((OptionEnumRadioButtons<GraphTypeEnum>)Option(OptionNames.GraphType)).Value != GraphTypeEnum.Isometric;
+            }
         }
         #endregion
 
