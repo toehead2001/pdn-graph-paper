@@ -58,47 +58,47 @@ namespace GraphPaperEffect
             BgColor
         }
 
-        private enum GraphTypeEnum
+        private enum GraphType
         {
             Standard,
             Isometric
         }
 
-        private enum LineStyleEnum
+        private enum LineStyle
         {
             Solid,
             Dashed,
             Dotted
         }
 
-        private enum CellColorEnum
+        private enum CellColor
         {
             PrimaryColor,
             Custom
         }
 
-        private enum GroupColorEnum
-        {
-            CellColor,
-            PrimaryColor,
-            Custom
-        }
-
-        private enum ClusterColorEnum
+        private enum GroupColor
         {
             CellColor,
             PrimaryColor,
             Custom
         }
 
-        private enum IsoVerColorEnum
+        private enum ClusterColor
         {
             CellColor,
             PrimaryColor,
             Custom
         }
 
-        private enum BgColorEnum
+        private enum IsoVerColor
+        {
+            CellColor,
+            PrimaryColor,
+            Custom
+        }
+
+        private enum BackColor
         {
             None,
             SecondaryColor,
@@ -111,7 +111,7 @@ namespace GraphPaperEffect
         {
             return new OptionControlList
             {
-                new OptionEnumRadioButtons<GraphTypeEnum>(OptionNames.GraphType, optContext, GraphTypeEnum.Standard),
+                new OptionEnumRadioButtons<GraphType>(OptionNames.GraphType, optContext, GraphType.Standard),
                 new OptionInt32Slider(OptionNames.CellSize, optContext, 10, 10, 100)
                 {
                     NumericUnit = new NumericUnit("px\u00B2")
@@ -126,15 +126,15 @@ namespace GraphPaperEffect
                 },
                 new OptionPanelBox(OptionNames.LineStylesBox, optContext)
                 {
-                    new OptionEnumRadioButtons<LineStyleEnum>(OptionNames.CellLineStyle, optContext, LineStyleEnum.Dotted)
+                    new OptionEnumRadioButtons<LineStyle>(OptionNames.CellLineStyle, optContext, LineStyle.Dotted)
                     {
                         Packed = true
                     },
-                    new OptionEnumRadioButtons<LineStyleEnum>(OptionNames.GroupLineStyle, optContext, LineStyleEnum.Dashed)
+                    new OptionEnumRadioButtons<LineStyle>(OptionNames.GroupLineStyle, optContext, LineStyle.Dashed)
                     {
                         Packed = true
                     },
-                    new OptionEnumRadioButtons<LineStyleEnum>(OptionNames.ClusterLineStyle, optContext, LineStyleEnum.Solid)
+                    new OptionEnumRadioButtons<LineStyle>(OptionNames.ClusterLineStyle, optContext, LineStyle.Solid)
                     {
                         Packed = true
                     }
@@ -143,7 +143,7 @@ namespace GraphPaperEffect
                 {
                     new OptionPanelPage(OptionNames.CellColorTab, optContext)
                     {
-                        new OptionEnumRadioButtons<CellColorEnum>(OptionNames.CellColor, optContext, CellColorEnum.Custom)
+                        new OptionEnumRadioButtons<CellColor>(OptionNames.CellColor, optContext, CellColor.Custom)
                         {
                             Packed = true
                         },
@@ -151,7 +151,7 @@ namespace GraphPaperEffect
                     },
                     new OptionPanelPage(OptionNames.GroupColorTab, optContext)
                     {
-                        new OptionEnumRadioButtons<GroupColorEnum>(OptionNames.GroupColor, optContext, GroupColorEnum.CellColor)
+                        new OptionEnumRadioButtons<GroupColor>(OptionNames.GroupColor, optContext, GroupColor.CellColor)
                         {
                             Packed = true
                         },
@@ -159,7 +159,7 @@ namespace GraphPaperEffect
                     },
                     new OptionPanelPage(OptionNames.ClusterColorTab, optContext)
                     {
-                        new OptionEnumRadioButtons<ClusterColorEnum>(OptionNames.ClusterColor, optContext, ClusterColorEnum.CellColor)
+                        new OptionEnumRadioButtons<ClusterColor>(OptionNames.ClusterColor, optContext, ClusterColor.CellColor)
                         {
                             Packed = true
                         },
@@ -167,7 +167,7 @@ namespace GraphPaperEffect
                     },
                     new OptionPanelPage(OptionNames.IsoVerColorTab, optContext)
                     {
-                        new OptionEnumRadioButtons<IsoVerColorEnum>(OptionNames.IsoVerColor, optContext, IsoVerColorEnum.Custom)
+                        new OptionEnumRadioButtons<IsoVerColor>(OptionNames.IsoVerColor, optContext, IsoVerColor.Custom)
                         {
                             Packed = true
                         },
@@ -177,7 +177,7 @@ namespace GraphPaperEffect
                     },
                     new OptionPanelPage(OptionNames.BgColorTab, optContext)
                     {
-                        new OptionEnumRadioButtons<BgColorEnum>(OptionNames.BgColor, optContext, BgColorEnum.Custom)
+                        new OptionEnumRadioButtons<BackColor>(OptionNames.BgColor, optContext, BackColor.Custom)
                         {
                             Packed = true
                         },
@@ -213,32 +213,32 @@ namespace GraphPaperEffect
 
             void CellColorWheel_Rule()
             {
-                Option(OptionNames.CellColorWheel).ReadOnly = ((OptionEnumRadioButtons<CellColorEnum>)Option(OptionNames.CellColor)).Value != CellColorEnum.Custom;
+                Option(OptionNames.CellColorWheel).ReadOnly = ((OptionEnumRadioButtons<CellColor>)Option(OptionNames.CellColor)).Value != CellColor.Custom;
             }
 
             void GroupColorWheel_Rule()
             {
-                Option(OptionNames.GroupColorWheel).ReadOnly = ((OptionEnumRadioButtons<GroupColorEnum>)Option(OptionNames.GroupColor)).Value != GroupColorEnum.Custom;
+                Option(OptionNames.GroupColorWheel).ReadOnly = ((OptionEnumRadioButtons<GroupColor>)Option(OptionNames.GroupColor)).Value != GroupColor.Custom;
             }
 
             void ClusterColorWheel_Rule()
             {
-                Option(OptionNames.ClusterColorWheel).ReadOnly = ((OptionEnumRadioButtons<ClusterColorEnum>)Option(OptionNames.ClusterColor)).Value != ClusterColorEnum.Custom;
+                Option(OptionNames.ClusterColorWheel).ReadOnly = ((OptionEnumRadioButtons<ClusterColor>)Option(OptionNames.ClusterColor)).Value != ClusterColor.Custom;
             }
 
             void IsoVerColorWheel_Rule()
             {
-                Option(OptionNames.IsoVerColorWheel).ReadOnly = ((((OptionEnumRadioButtons<IsoVerColorEnum>)Option(OptionNames.IsoVerColor)).Value != IsoVerColorEnum.Custom) || (((OptionEnumRadioButtons<GraphTypeEnum>)Option(OptionNames.GraphType)).Value != GraphTypeEnum.Isometric));
+                Option(OptionNames.IsoVerColorWheel).ReadOnly = ((((OptionEnumRadioButtons<IsoVerColor>)Option(OptionNames.IsoVerColor)).Value != IsoVerColor.Custom) || (((OptionEnumRadioButtons<GraphType>)Option(OptionNames.GraphType)).Value != GraphType.Isometric));
             }
 
             void BgColorWheel_Rule()
             {
-                Option(OptionNames.BgColorWheel).ReadOnly = ((OptionEnumRadioButtons<BgColorEnum>)Option(OptionNames.BgColor)).Value != BgColorEnum.Custom;
+                Option(OptionNames.BgColorWheel).ReadOnly = ((OptionEnumRadioButtons<BackColor>)Option(OptionNames.BgColor)).Value != BackColor.Custom;
             }
 
             void IsoVerColor_Rule()
             {
-                Option(OptionNames.IsoVerColor).ReadOnly = ((OptionEnumRadioButtons<GraphTypeEnum>)Option(OptionNames.GraphType)).Value != GraphTypeEnum.Isometric;
+                Option(OptionNames.IsoVerColor).ReadOnly = ((OptionEnumRadioButtons<GraphType>)Option(OptionNames.GraphType)).Value != GraphType.Isometric;
             }
         }
         #endregion
@@ -246,70 +246,70 @@ namespace GraphPaperEffect
         protected override void OnSetRenderInfo(OptionBasedEffectConfigToken newToken, RenderArgs dstArgs, RenderArgs srcArgs)
         {
             #region Token Stuff
-            Amount1 = OptionTypeSlider<int>.GetOptionValue(OptionNames.CellSize, newToken.Items);
-            Amount2 = OptionTypeSlider<int>.GetOptionValue(OptionNames.GroupSize, newToken.Items);
-            Amount3 = OptionTypeSlider<int>.GetOptionValue(OptionNames.ClusterSize, newToken.Items);
-            Amount4 = OptionEnumRadioButtons<GraphTypeEnum>.GetOptionValue(OptionNames.GraphType, newToken.Items);
-            switch (OptionEnumRadioButtons<CellColorEnum>.GetOptionValue(OptionNames.CellColor, newToken.Items))
+            cellSize = OptionTypeSlider<int>.GetOptionValue(OptionNames.CellSize, newToken.Items);
+            cellsPerGroup = OptionTypeSlider<int>.GetOptionValue(OptionNames.GroupSize, newToken.Items);
+            cellsPerCluster = OptionTypeSlider<int>.GetOptionValue(OptionNames.ClusterSize, newToken.Items);
+            graphType = OptionEnumRadioButtons<GraphType>.GetOptionValue(OptionNames.GraphType, newToken.Items);
+            switch (OptionEnumRadioButtons<CellColor>.GetOptionValue(OptionNames.CellColor, newToken.Items))
             {
-                case CellColorEnum.PrimaryColor:
-                    Amount5 = EnvironmentParameters.PrimaryColor;
+                case CellColor.PrimaryColor:
+                    cellColor = EnvironmentParameters.PrimaryColor;
                     break;
-                case CellColorEnum.Custom:
-                    Amount5 = OptionColorWheel.GetOptionValue(OptionNames.CellColorWheel, newToken.Items);
+                case CellColor.Custom:
+                    cellColor = OptionColorWheel.GetOptionValue(OptionNames.CellColorWheel, newToken.Items);
                     break;
             }
-            switch (OptionEnumRadioButtons<GroupColorEnum>.GetOptionValue(OptionNames.GroupColor, newToken.Items))
+            switch (OptionEnumRadioButtons<GroupColor>.GetOptionValue(OptionNames.GroupColor, newToken.Items))
             {
-                case GroupColorEnum.CellColor:
-                    Amount6 = Amount5;
+                case GroupColor.CellColor:
+                    groupColor = cellColor;
                     break;
-                case GroupColorEnum.PrimaryColor:
-                    Amount6 = EnvironmentParameters.PrimaryColor;
+                case GroupColor.PrimaryColor:
+                    groupColor = EnvironmentParameters.PrimaryColor;
                     break;
-                case GroupColorEnum.Custom:
-                    Amount6 = OptionColorWheel.GetOptionValue(OptionNames.GroupColorWheel, newToken.Items);
+                case GroupColor.Custom:
+                    groupColor = OptionColorWheel.GetOptionValue(OptionNames.GroupColorWheel, newToken.Items);
                     break;
             }
-            switch (OptionEnumRadioButtons<ClusterColorEnum>.GetOptionValue(OptionNames.ClusterColor, newToken.Items))
+            switch (OptionEnumRadioButtons<ClusterColor>.GetOptionValue(OptionNames.ClusterColor, newToken.Items))
             {
-                case ClusterColorEnum.CellColor:
-                    Amount7 = Amount5;
+                case ClusterColor.CellColor:
+                    clusterColor = cellColor;
                     break;
-                case ClusterColorEnum.PrimaryColor:
-                    Amount7 = EnvironmentParameters.PrimaryColor;
+                case ClusterColor.PrimaryColor:
+                    clusterColor = EnvironmentParameters.PrimaryColor;
                     break;
-                case ClusterColorEnum.Custom:
-                    Amount7 = OptionColorWheel.GetOptionValue(OptionNames.ClusterColorWheel, newToken.Items);
+                case ClusterColor.Custom:
+                    clusterColor = OptionColorWheel.GetOptionValue(OptionNames.ClusterColorWheel, newToken.Items);
                     break;
             }
-            switch (OptionEnumRadioButtons<IsoVerColorEnum>.GetOptionValue(OptionNames.IsoVerColor, newToken.Items))
+            switch (OptionEnumRadioButtons<IsoVerColor>.GetOptionValue(OptionNames.IsoVerColor, newToken.Items))
             {
-                case IsoVerColorEnum.CellColor:
-                    Amount8 = Amount5;
+                case IsoVerColor.CellColor:
+                    isoVerColor = cellColor;
                     break;
-                case IsoVerColorEnum.PrimaryColor:
-                    Amount8 = EnvironmentParameters.PrimaryColor;
+                case IsoVerColor.PrimaryColor:
+                    isoVerColor = EnvironmentParameters.PrimaryColor;
                     break;
-                case IsoVerColorEnum.Custom:
-                    Amount8 = OptionColorWheel.GetOptionValue(OptionNames.IsoVerColorWheel, newToken.Items);
+                case IsoVerColor.Custom:
+                    isoVerColor = OptionColorWheel.GetOptionValue(OptionNames.IsoVerColorWheel, newToken.Items);
                     break;
             }
-            switch (OptionEnumRadioButtons<BgColorEnum>.GetOptionValue(OptionNames.BgColor, newToken.Items))
+            switch (OptionEnumRadioButtons<BackColor>.GetOptionValue(OptionNames.BgColor, newToken.Items))
             {
-                case BgColorEnum.None:
-                    Amount9 = Color.Transparent;
+                case BackColor.None:
+                    backColor = Color.Transparent;
                     break;
-                case BgColorEnum.SecondaryColor:
-                    Amount9 = EnvironmentParameters.SecondaryColor;
+                case BackColor.SecondaryColor:
+                    backColor = EnvironmentParameters.SecondaryColor;
                     break;
-                case BgColorEnum.Custom:
-                    Amount9 = OptionColorWheel.GetOptionValue(OptionNames.BgColorWheel, newToken.Items);
+                case BackColor.Custom:
+                    backColor = OptionColorWheel.GetOptionValue(OptionNames.BgColorWheel, newToken.Items);
                     break;
             }
-            Amount10 = OptionEnumRadioButtons<LineStyleEnum>.GetOptionValue(OptionNames.CellLineStyle, newToken.Items);
-            Amount11 = OptionEnumRadioButtons<LineStyleEnum>.GetOptionValue(OptionNames.GroupLineStyle, newToken.Items);
-            Amount12 = OptionEnumRadioButtons<LineStyleEnum>.GetOptionValue(OptionNames.ClusterLineStyle, newToken.Items);
+            cellLineStyle = OptionEnumRadioButtons<LineStyle>.GetOptionValue(OptionNames.CellLineStyle, newToken.Items);
+            groupLineStyle = OptionEnumRadioButtons<LineStyle>.GetOptionValue(OptionNames.GroupLineStyle, newToken.Items);
+            clusterLineStyle = OptionEnumRadioButtons<LineStyle>.GetOptionValue(OptionNames.ClusterLineStyle, newToken.Items);
             #endregion
 
 
@@ -322,7 +322,7 @@ namespace GraphPaperEffect
 
             // Fill background
             Rectangle backgroundRect = new Rectangle(0, 0, selection.Width, selection.Height);
-            using (SolidBrush bgBrush = new SolidBrush(Amount9))
+            using (SolidBrush bgBrush = new SolidBrush(backColor))
                 graphGraphics.FillRectangle(bgBrush, backgroundRect);
 
             // Set Variables
@@ -331,13 +331,13 @@ namespace GraphPaperEffect
             PointF start, end, start2, end2;
 
             // Draw Graph
-            switch (Amount4)
+            switch (graphType)
             {
-                case GraphTypeEnum.Standard:
+                case GraphType.Standard:
                     #region
                     // Calculate the number of lines will fit in the selection
-                    xLoops = (int)Math.Ceiling((double)selection.Height / Amount1 / 2);
-                    yLoops = (int)Math.Ceiling((double)selection.Width / Amount1 / 2);
+                    xLoops = (int)Math.Ceiling((double)selection.Height / cellSize / 2);
+                    yLoops = (int)Math.Ceiling((double)selection.Width / cellSize / 2);
 
                     // Sets (Cell, Group, Cluster)
                     for (byte set = 0; set < 3; set++)
@@ -346,29 +346,29 @@ namespace GraphPaperEffect
                         {
                             case 0: // Cells
                                 gridPen.Width = 1;
-                                gridPen.Color = Amount5;
-                                gridPen.DashStyle = getDashStyle(Amount10);
+                                gridPen.Color = cellColor;
+                                gridPen.DashStyle = GetDashStyle(cellLineStyle);
                                 break;
                             case 1: // Groups
                                 gridPen.Width = 1;
-                                gridPen.Color = Amount6;
-                                gridPen.DashStyle = getDashStyle(Amount11);
+                                gridPen.Color = groupColor;
+                                gridPen.DashStyle = GetDashStyle(groupLineStyle);
                                 break;
                             case 2: // Clusters
                                 gridPen.Width = 2;
-                                gridPen.Color = Amount7;
-                                gridPen.DashStyle = getDashStyle(Amount12);
+                                gridPen.Color = clusterColor;
+                                gridPen.DashStyle = GetDashStyle(clusterLineStyle);
                                 break;
                         }
 
                         // Draw Vertical Lines
                         for (int i = 0; i < yLoops; i++)
                         {
-                            if ((set == 2) && (i % (Amount2 * Amount3) != 0))
+                            if ((set == 2) && (i % (cellsPerGroup * cellsPerCluster) != 0))
                                 continue;
-                            if ((set == 1) && ((i % Amount2 != 0) || (i % (Amount2 * Amount3) == 0)))
+                            if ((set == 1) && ((i % cellsPerGroup != 0) || (i % (cellsPerGroup * cellsPerCluster) == 0)))
                                 continue;
-                            if ((set == 0) && (i % Amount2 == 0))
+                            if ((set == 0) && (i % cellsPerGroup == 0))
                                 continue;
 
                             if (i == 0)
@@ -379,11 +379,11 @@ namespace GraphPaperEffect
                             }
                             else
                             {
-                                start = new PointF(centerX + Amount1 * i, 0);
-                                end = new PointF(centerX + Amount1 * i, selection.Height);
+                                start = new PointF(centerX + cellSize * i, 0);
+                                end = new PointF(centerX + cellSize * i, selection.Height);
 
-                                start2 = new PointF(centerX - Amount1 * i, 0);
-                                end2 = new PointF(centerX - Amount1 * i, selection.Height);
+                                start2 = new PointF(centerX - cellSize * i, 0);
+                                end2 = new PointF(centerX - cellSize * i, selection.Height);
 
                                 graphGraphics.DrawLine(gridPen, start, end);
                                 graphGraphics.DrawLine(gridPen, start2, end2);
@@ -393,11 +393,11 @@ namespace GraphPaperEffect
                         // Draw Horizontal Lines
                         for (int i = 0; i < xLoops; i++)
                         {
-                            if ((set == 2) && (i % (Amount2 * Amount3) != 0))
+                            if ((set == 2) && (i % (cellsPerGroup * cellsPerCluster) != 0))
                                 continue;
-                            if ((set == 1) && ((i % Amount2 != 0) || (i % (Amount2 * Amount3) == 0)))
+                            if ((set == 1) && ((i % cellsPerGroup != 0) || (i % (cellsPerGroup * cellsPerCluster) == 0)))
                                 continue;
-                            if ((set == 0) && (i % Amount2 == 0))
+                            if ((set == 0) && (i % cellsPerGroup == 0))
                                 continue;
 
                             if (i == 0)
@@ -408,11 +408,11 @@ namespace GraphPaperEffect
                             }
                             else
                             {
-                                start = new PointF(0, centerY + Amount1 * i);
-                                end = new PointF(selection.Width, centerY + Amount1 * i);
+                                start = new PointF(0, centerY + cellSize * i);
+                                end = new PointF(selection.Width, centerY + cellSize * i);
 
-                                start2 = new PointF(0, centerY - Amount1 * i);
-                                end2 = new PointF(selection.Width, centerY - Amount1 * i);
+                                start2 = new PointF(0, centerY - cellSize * i);
+                                end2 = new PointF(selection.Width, centerY - cellSize * i);
 
                                 graphGraphics.DrawLine(gridPen, start, end);
                                 graphGraphics.DrawLine(gridPen, start2, end2);
@@ -422,7 +422,7 @@ namespace GraphPaperEffect
                     #endregion
 
                     break;
-                case GraphTypeEnum.Isometric:
+                case GraphType.Isometric:
                     #region
                     const double rad30 = Math.PI / 180 * 30;
                     const double rad60 = Math.PI / 180 * 60;
@@ -430,26 +430,26 @@ namespace GraphPaperEffect
 
                     // Calculate the number of lines will fit in the selection
                     float adjustedHeight = (float)(selection.Height + selection.Width * Math.Sin(rad30) / Math.Sin(rad60));
-                    xLoops = (int)Math.Ceiling(adjustedHeight / Amount1);
-                    yLoops = (int)Math.Ceiling(selection.Width / (Amount1 * sineHelper));
+                    xLoops = (int)Math.Ceiling(adjustedHeight / cellSize);
+                    yLoops = (int)Math.Ceiling(selection.Width / (cellSize * sineHelper));
 
                     // Draw Vertical Lines
                     for (int i = 0; i < yLoops; i++)
                     {
-                        if (i % (Amount2 * Amount3) == 0)
+                        if (i % (cellsPerGroup * cellsPerCluster) == 0)
                         {
                             gridPen.Width = 2;
-                            gridPen.Color = Amount8;
+                            gridPen.Color = isoVerColor;
                         }
-                        else if (i % Amount2 == 0)
+                        else if (i % cellsPerGroup == 0)
                         {
                             gridPen.Width = 1;
-                            gridPen.Color = Amount8;
+                            gridPen.Color = isoVerColor;
                         }
                         else
                         {
                             gridPen.Width = 1;
-                            gridPen.Color = Color.FromArgb(85, Amount8);
+                            gridPen.Color = Color.FromArgb(85, isoVerColor);
                         }
 
                         if (i == 0)
@@ -460,11 +460,11 @@ namespace GraphPaperEffect
                         }
                         else
                         {
-                            start = new PointF(centerX + Amount1 / 2f * sineHelper * i, 0);
-                            end = new PointF(centerX + Amount1 / 2f * sineHelper * i, selection.Height);
+                            start = new PointF(centerX + cellSize / 2f * sineHelper * i, 0);
+                            end = new PointF(centerX + cellSize / 2f * sineHelper * i, selection.Height);
 
-                            start2 = new PointF(centerX - Amount1 / 2f * sineHelper * i, 0);
-                            end2 = new PointF(centerX - Amount1 / 2f * sineHelper * i, selection.Height);
+                            start2 = new PointF(centerX - cellSize / 2f * sineHelper * i, 0);
+                            end2 = new PointF(centerX - cellSize / 2f * sineHelper * i, selection.Height);
 
                             graphGraphics.DrawLine(gridPen, start, end);
                             graphGraphics.DrawLine(gridPen, start2, end2);
@@ -480,36 +480,36 @@ namespace GraphPaperEffect
                         {
                             case 0: // Cells
                                 gridPen.Width = 1;
-                                gridPen.Color = Amount5;
-                                gridPen.DashStyle = getDashStyle(Amount10);
+                                gridPen.Color = cellColor;
+                                gridPen.DashStyle = GetDashStyle(cellLineStyle);
                                 break;
                             case 1: // Groups
                                 gridPen.Width = 1;
-                                gridPen.Color = Amount6;
-                                gridPen.DashStyle = getDashStyle(Amount11);
+                                gridPen.Color = groupColor;
+                                gridPen.DashStyle = GetDashStyle(groupLineStyle);
                                 break;
                             case 2: // Clusters
                                 gridPen.Width = 1.6f;
-                                gridPen.Color = Amount7;
-                                gridPen.DashStyle = getDashStyle(Amount12);
+                                gridPen.Color = clusterColor;
+                                gridPen.DashStyle = GetDashStyle(clusterLineStyle);
                                 break;
                         }
 
                         // Draw Isometric Grid Lines
                         for (int i = 1; i < xLoops; i++)
                         {
-                            if ((set == 2) && (i % (Amount2 * Amount3) != 0))
+                            if ((set == 2) && (i % (cellsPerGroup * cellsPerCluster) != 0))
                                 continue;
-                            if ((set == 1) && ((i % Amount2 != 0) || (i % (Amount2 * Amount3) == 0)))
+                            if ((set == 1) && ((i % cellsPerGroup != 0) || (i % (cellsPerGroup * cellsPerCluster) == 0)))
                                 continue;
-                            if ((set == 0) && (i % Amount2 == 0))
+                            if ((set == 0) && (i % cellsPerGroup == 0))
                                 continue;
 
-                            start = new PointF(0, Amount1 * i);
-                            end = new PointF(Amount1 * i * sineHelper, 0);
+                            start = new PointF(0, cellSize * i);
+                            end = new PointF(cellSize * i * sineHelper, 0);
 
-                            start2 = new PointF(selection.Width, Amount1 * i);
-                            end2 = new PointF(selection.Width - Amount1 * i * sineHelper, 0);
+                            start2 = new PointF(selection.Width, cellSize * i);
+                            end2 = new PointF(selection.Width - cellSize * i * sineHelper, 0);
 
                             graphGraphics.DrawLine(gridPen, start, end);
                             graphGraphics.DrawLine(gridPen, start2, end2);
@@ -530,15 +530,15 @@ namespace GraphPaperEffect
         }
 
         // Fetch Dash Styles
-        private DashStyle getDashStyle(LineStyleEnum style)
+        private DashStyle GetDashStyle(LineStyle style)
         {
             switch (style)
             {
-                case LineStyleEnum.Solid:
+                case LineStyle.Solid:
                     return DashStyle.Solid;
-                case LineStyleEnum.Dashed:
+                case LineStyle.Dashed:
                     return DashStyle.Dash;
-                case LineStyleEnum.Dotted:
+                case LineStyle.Dotted:
                     return DashStyle.Dot;
                 default:
                     return DashStyle.Solid;
@@ -555,18 +555,18 @@ namespace GraphPaperEffect
         }
 
         #region CodeLab
-        private int Amount1; // [2,100] Cell Size
-        private int Amount2; // [1,10] Cells per Group (squared)
-        private int Amount3; // [1,10] Groups per Cluster (squared)
-        private GraphTypeEnum Amount4; // [1] Graph Type|Standard|Isometric
-        private ColorBgra Amount5; // Cell Color
-        private ColorBgra Amount6; // Group Color
-        private ColorBgra Amount7; // Cluster Color
-        private ColorBgra Amount8; // IsoVer Color
-        private ColorBgra Amount9; // Background Color
-        private LineStyleEnum Amount10; // Cell Dash Style
-        private LineStyleEnum Amount11; // Group Dash Style
-        private LineStyleEnum Amount12; // Cluster Dash Style
+        private int cellSize; // [2,100] Cell Size
+        private int cellsPerGroup; // [1,10] Cells per Group (squared)
+        private int cellsPerCluster; // [1,10] Groups per Cluster (squared)
+        private GraphType graphType; // [1] Graph Type|Standard|Isometric
+        private ColorBgra cellColor; // Cell Color
+        private ColorBgra groupColor; // Group Color
+        private ColorBgra clusterColor; // Cluster Color
+        private ColorBgra isoVerColor; // IsoVer Color
+        private ColorBgra backColor; // Background Color
+        private LineStyle cellLineStyle; // Cell Dash Style
+        private LineStyle groupLineStyle; // Group Dash Style
+        private LineStyle clusterLineStyle; // Cluster Dash Style
         #endregion
 
         private Surface graphSurface;
