@@ -30,7 +30,7 @@ namespace GraphPaperEffect
         }
 
         #region Option Enums
-        enum OptionNames
+        private enum OptionNames
         {
             GraphType,
             CellSize,
@@ -58,47 +58,47 @@ namespace GraphPaperEffect
             BgColor
         }
 
-        enum GraphTypeEnum
+        private enum GraphTypeEnum
         {
             Standard,
             Isometric
         }
 
-        enum LineStyleEnum
+        private enum LineStyleEnum
         {
             Solid,
             Dashed,
             Dotted
         }
 
-        enum CellColorEnum
+        private enum CellColorEnum
         {
             PrimaryColor,
             Custom
         }
 
-        enum GroupColorEnum
-        {
-            CellColor,
-            PrimaryColor,
-            Custom
-        }
-
-        enum ClusterColorEnum
+        private enum GroupColorEnum
         {
             CellColor,
             PrimaryColor,
             Custom
         }
 
-        enum IsoVerColorEnum
+        private enum ClusterColorEnum
         {
             CellColor,
             PrimaryColor,
             Custom
         }
 
-        enum BgColorEnum
+        private enum IsoVerColorEnum
+        {
+            CellColor,
+            PrimaryColor,
+            Custom
+        }
+
+        private enum BgColorEnum
         {
             None,
             SecondaryColor,
@@ -530,7 +530,7 @@ namespace GraphPaperEffect
         }
 
         // Fetch Dash Styles
-        DashStyle getDashStyle(LineStyleEnum style)
+        private DashStyle getDashStyle(LineStyleEnum style)
         {
             switch (style)
             {
@@ -555,23 +555,23 @@ namespace GraphPaperEffect
         }
 
         #region CodeLab
-        int Amount1; // [2,100] Cell Size
-        int Amount2; // [1,10] Cells per Group (squared)
-        int Amount3; // [1,10] Groups per Cluster (squared)
-        GraphTypeEnum Amount4; // [1] Graph Type|Standard|Isometric
-        ColorBgra Amount5; // Cell Color
-        ColorBgra Amount6; // Group Color
-        ColorBgra Amount7; // Cluster Color
-        ColorBgra Amount8; // IsoVer Color
-        ColorBgra Amount9; // Background Color
-        LineStyleEnum Amount10; // Cell Dash Style
-        LineStyleEnum Amount11; // Group Dash Style
-        LineStyleEnum Amount12; // Cluster Dash Style
+        private int Amount1; // [2,100] Cell Size
+        private int Amount2; // [1,10] Cells per Group (squared)
+        private int Amount3; // [1,10] Groups per Cluster (squared)
+        private GraphTypeEnum Amount4; // [1] Graph Type|Standard|Isometric
+        private ColorBgra Amount5; // Cell Color
+        private ColorBgra Amount6; // Group Color
+        private ColorBgra Amount7; // Cluster Color
+        private ColorBgra Amount8; // IsoVer Color
+        private ColorBgra Amount9; // Background Color
+        private LineStyleEnum Amount10; // Cell Dash Style
+        private LineStyleEnum Amount11; // Group Dash Style
+        private LineStyleEnum Amount12; // Cluster Dash Style
         #endregion
 
-        Surface graphSurface;
+        private Surface graphSurface;
 
-        void Render(Surface dst, Surface src, Rectangle rect)
+        private void Render(Surface dst, Surface src, Rectangle rect)
         {
             Rectangle selection = EnvironmentParameters.GetSelection(src.Bounds).GetBoundsInt();
 
