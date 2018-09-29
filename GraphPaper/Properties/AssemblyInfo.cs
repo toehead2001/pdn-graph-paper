@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("isometric|graph")]
 [assembly: AssemblyCompany("toe_head2001")]
 [assembly: AssemblyProduct("Graph Paper")]
-[assembly: AssemblyCopyright("Copyright © toe_head2001")]
+[assembly: AssemblyCopyright("Copyright © 2018 toe_head2001")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
